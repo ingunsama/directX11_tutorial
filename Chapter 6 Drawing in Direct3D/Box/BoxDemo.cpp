@@ -13,6 +13,26 @@
 #include "d3dx11Effect.h"
 #include "MathHelper.h"
 
+
+//lig
+//#include "d3dApp.h" 에 추가하자
+#define LogTrace(x,log)\
+	{					\
+		HRESULT hr = (x);\
+		LPWSTR output;	\
+			FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | \
+				FORMAT_MESSAGE_IGNORE_INSERTS | \
+				FORMAT_MESSAGE_ALLOCATE_BUFFER, \
+				NULL, \
+				hr, \
+				MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), \
+				(LPTSTR)&output, \
+				0,									\
+				NULL);										\
+			MessageBox(NULL, output, log, MB_OK);			\
+	}
+//~lig
+
 struct Vertex
 {
 	XMFLOAT3 Pos;
@@ -308,6 +328,7 @@ void BoxApp::BuildFX()
 	if(FAILED(hr))
 	{
 		//lig
+		LogTrace(hr, L"D3DX11CompileFromFile");
 		/*
 		심각도	코드	설명	프로젝트	파일	줄	비표시 오류(Suppression) 상태
 		오류	LNK2019	__vsnwprintf 외부 기호
