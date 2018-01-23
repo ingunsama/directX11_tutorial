@@ -33,3 +33,10 @@
 
 # Builds
 Debug/
+
+#vs folder
+.vs/
+*.suo
+
+#etc
+*.db
